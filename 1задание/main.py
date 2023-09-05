@@ -4,6 +4,15 @@ def printM(A):
     for i in range(n):
         print(*A[i], end='\n')
 
+def det(A):
+    n = len(A)
+    determ = 1
+    for i in range(n):
+        if(A[i][i] == 0):
+            return 0
+        determ *= A[i][i]
+    return determ
+
 #Функция, определяющая определитель матрицы А
 def det(A):
     n = len(A)
@@ -35,19 +44,21 @@ def Gauss_method(A):
 
         # Вычитание текущей строки из всех нижних строк
         for j in range(i + 1, n):
-            factor = A[j][i]
+            factor = A[j][i] * (-1)
             for k in range(i, n+1):
-                A[j][k] -= factor * A[i][k]
-
+                A[j][k] += factor * A[i][k]
+    if (det(A) == 0):
+        raise Exception("Метод Гаусса не применим: деление на ноль")
 
     # Обратный ход метода Гаусса
-    x = [0] * n
+    solution = [0] * n
     for i in range(n - 1, -1, -1):
+        solution[i] = A[i][n]
         for j in range(i + 1, n):
-            x[i] -= A[i][j] * x[j]
+            solution[i] -= A[i][j] * solution[j]
+        solution[i] /= A[i][i]
 
-    return x
-
+    return solution
 
 #Драйвер
 if __name__ == "__main__":
@@ -60,7 +71,6 @@ if __name__ == "__main__":
 
     solution = Gauss_method(A)
     cou = 0
-    print(solution)
     print("Решение системы уравнений:")
     for i in solution:
         cou +=1
