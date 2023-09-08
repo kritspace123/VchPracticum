@@ -70,7 +70,7 @@ def Gauss_method(A):
 
 #Драйвер
 if __name__ == "__main__":
-    with open('test.txt', "r") as f:
+    with open('../1задание/test.txt', "r") as f:
         # Cчитываем тест
         A = []
         for line in f:
