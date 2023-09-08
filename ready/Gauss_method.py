@@ -4,19 +4,6 @@ def printM(A):
     for i in range(n):
         print(*A[i], end='\n')
 
-
-def get_A_minor(A, row, col):
-    return [row[:col] + row[col+1:] for row in (A[:row] + A[row+1:])]
-
-def calculate_determinant(A):
-    if len(A) == 2 and len(A[0]) == 2:
-        return A[0][0] * A[1][1] - A[0][1] * A[1][0]
-
-    determinant = 0
-    for col in range(len(A)):
-        determinant += ((-1) ** col) * A[0][col] * calculate_determinant(get_A_minor(A, 0, col))
-    return determinant
-
 def det(A):
     n = len(A[0])-1
     determ = 1
@@ -70,7 +57,7 @@ def Gauss_method(A):
 
 #Драйвер
 if __name__ == "__main__":
-    with open('../1задание/test.txt', "r") as f:
+    with open('test.txt', "r") as f:
         # Cчитываем тест
         A = []
         for line in f:
