@@ -45,6 +45,7 @@ def Gauss_method(A):
     if (det(A) == 0):
         raise Exception("Метод Гаусса не применим: деление на ноль")
     print((det(A) * ((-1)**cou)) * m)
+    print(A)
     # Обратный ход метода Гаусса
     solution = [0] * n
     for i in range(n - 1, -1, -1):
@@ -68,4 +69,4 @@ if __name__ == "__main__":
     print("Решение системы уравнений:")
     for i in solution:
         cou +=1
-        print(f"x{cou} = {i:.5f}")
+        print(f"x{cou} = {i}")
